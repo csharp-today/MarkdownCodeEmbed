@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace MarkdownCodeEmbed
 {
@@ -6,7 +7,8 @@ namespace MarkdownCodeEmbed
     {
         static void Main(string[] args)
         {
-            Console.WriteLine($"Hello from {nameof(MarkdownCodeEmbed)} tool!");
+            Console.WriteLine($"Welcome to {nameof(MarkdownCodeEmbed)} tool!");
+            Console.WriteLine("Version: " + Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion);
         }
     }
 }
