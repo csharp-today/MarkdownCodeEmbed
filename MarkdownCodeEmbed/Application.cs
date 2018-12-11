@@ -12,6 +12,10 @@ namespace MarkdownCodeEmbed
             var inputContainer = _container
                 .Resolve<IInputContainerFactory>()
                 .GetInputContainer(args.InputDirectory);
+
+            var codeContainer = _container
+                .Resolve<ICodeContainerFactory>()
+                .GetCodeContainer(args.SourceCodeDirectory);
         }
     }
 }

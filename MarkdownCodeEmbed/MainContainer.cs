@@ -8,8 +8,11 @@ namespace MarkdownCodeEmbed
     {
         public MainContainer()
         {
-            this.RegisterType<IFileSystem, FileSystem>();
-            this.RegisterType<IInputContainerFactory, InputContainerFactory>();
+            Map<ICodeContainerFactory, CodeContainerFactory>();
+            Map<IFileSystem, FileSystem>();
+            Map<IInputContainerFactory, InputContainerFactory>();
         }
+
+        private void Map<TAbstraction, TImplementation>() where TImplementation : TAbstraction => this.RegisterType<TAbstraction, TImplementation>();
     }
 }
