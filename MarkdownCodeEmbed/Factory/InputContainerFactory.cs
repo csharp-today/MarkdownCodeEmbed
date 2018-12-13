@@ -17,7 +17,7 @@ namespace MarkdownCodeEmbed.Factory
                 throw new ArgumentException("Input directory doesn't exist: " + inputDirectory);
             }
 
-            return new InputContainer();
+            return new InputContainer(_fileSystem, inputDirectory);
         }
     }
 }
