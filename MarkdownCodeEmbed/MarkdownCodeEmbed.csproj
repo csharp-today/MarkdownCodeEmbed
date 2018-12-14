@@ -9,6 +9,7 @@
 
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>MarkdownCodeEmbed</ToolCommandName>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

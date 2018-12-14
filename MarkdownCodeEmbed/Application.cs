@@ -24,6 +24,11 @@ namespace MarkdownCodeEmbed
             var outputContainer = _container
                 .Resolve<IOutputContainerFactory>()
                 .GetOutputContainer(args.OutputDirectory);
+
+            foreach (var markdownFile in inputContainer.GetMarkdownFiles())
+            {
+                Console.WriteLine(markdownFile);
+            }
         }
     }
 }
