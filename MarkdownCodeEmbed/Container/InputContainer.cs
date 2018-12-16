@@ -41,7 +41,10 @@ namespace MarkdownCodeEmbed.Container
                     relativePath = relativePath.Replace(_fileSystem.Path.AltDirectorySeparatorChar, _fileSystem.Path.DirectorySeparatorChar);
                 }
 
-                yield return new MarkdownFile(fileName, fullPath, relativePath);
+                yield return new MarkdownFile(fileName, fullPath, relativePath)
+                {
+                    Content = _fileSystem.File.ReadAllText(fullPath)
+                };
             }
         }
     }

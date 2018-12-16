@@ -2,6 +2,7 @@
 {
     internal class MarkdownFile
     {
+        public string Content { get; set; }
         public string FileName { get; }
         public string FullPath { get; }
         public string RelativePath { get; }

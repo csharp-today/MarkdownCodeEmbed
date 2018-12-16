@@ -1,6 +1,7 @@
 ﻿using CommandLine;
 using System;
 using System.Reflection;
+using Unity;
 
 namespace MarkdownCodeEmbed
 {
@@ -16,7 +17,7 @@ namespace MarkdownCodeEmbed
             Console.WriteLine("Version: " + Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion);
             args.Print();
 
-            var application = new Application();
+            var application = new MainContainer().Resolve<Application>();
             application.Run(args);
         }
     }

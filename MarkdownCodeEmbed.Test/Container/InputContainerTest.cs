@@ -12,6 +12,27 @@ namespace MarkdownCodeEmbed.Test.Container
     public class InputContainerTest : TestContainer
     {
         [Fact]
+        public void Get_File_Content() => LucidTest
+            .DefineExpected(new
+            {
+                FileName = "file.md",
+                Content = "some data"
+            })
+            .Arrange(expected =>
+            {
+                const string Path = @"C:\root";
+                FileSystem.AddFile(CombinePath(Path, expected.FileName), new MockFileData(expected.Content));
+                return Path;
+            })
+            .Act(GetMarkdownFiles)
+            .Assert((expected, files) =>
+            {
+                var file = files.First();
+                file.FileName.ShouldBe(expected.FileName);
+                file.Content.ShouldBe(expected.Content);
+            });
+
+        [Fact]
         public void Get_Markdown_Files_From_Specified_Directory() => LucidTest
             .DefineExpected(new
             {
@@ -29,7 +50,7 @@ namespace MarkdownCodeEmbed.Test.Container
                 FileSystem.AddFile(CombinePath(expected.RootPath, "not-markdown.txt"), data);
                 return expected.RootPath;
             })
-            .Act(path => new InputContainer(FileSystem, path).GetMarkdownFiles())
+            .Act(GetMarkdownFiles)
             .Assert((expected, files) =>
             {
                 files.ShouldNotBeNull();
@@ -45,5 +66,7 @@ namespace MarkdownCodeEmbed.Test.Container
             });
 
         private string CombinePath(params string[] paths) => FileSystem.Path.Combine(paths);
+
+        private IEnumerable<MarkdownFile> GetMarkdownFiles(string path) => new InputContainer(FileSystem, path).GetMarkdownFiles();
     }
 }
