@@ -23,6 +23,8 @@ namespace MarkdownCodeEmbed.Test
             return ExistingDirectory;
         }
 
+        protected string CombinePath(params string[] paths) => FileSystem.Path.Combine(paths);
+
         protected Exception GetException(Action action)
         {
             try

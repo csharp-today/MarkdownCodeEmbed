@@ -65,8 +65,6 @@ namespace MarkdownCodeEmbed.Test.Container
                 subDirectoryFile.RelativePath.ShouldBe(CombinePath(expected.SubDirectoryName, expected.SubDirectoryFileName));
             });
 
-        private string CombinePath(params string[] paths) => FileSystem.Path.Combine(paths);
-
         private IEnumerable<MarkdownFile> GetMarkdownFiles(string path) => new InputContainer(FileSystem, path).GetMarkdownFiles();
     }
 }
