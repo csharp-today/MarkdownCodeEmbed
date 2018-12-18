@@ -1,4 +1,5 @@
 ﻿using MarkdownCodeEmbed.Factory;
+using MarkdownCodeEmbed.Logger;
 using System.IO.Abstractions;
 using Unity;
 
@@ -11,6 +12,7 @@ namespace MarkdownCodeEmbed
             Map<ICodeContainerFactory, CodeContainerFactory>();
             Map<IFileSystem, FileSystem>();
             Map<IInputContainerFactory, InputContainerFactory>();
+            Map<ILogger, ConsoleLogger>();
             Map<IOutputContainerFactory, OutputContainerFactory>();
         }
 
