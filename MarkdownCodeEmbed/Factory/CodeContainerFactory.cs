@@ -17,7 +17,7 @@ namespace MarkdownCodeEmbed.Factory
                 throw new ArgumentException("Code directory doesn't exist: " + codeDirectory);
             }
 
-            return new CodeContainer();
+            return new CodeContainer(_fileSystem, codeDirectory);
         }
     }
 }

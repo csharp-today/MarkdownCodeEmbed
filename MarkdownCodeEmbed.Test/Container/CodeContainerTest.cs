@@ -2,6 +2,7 @@
 using MarkdownCodeEmbed.Container;
 using MarkdownCodeEmbed.Model;
 using Shouldly;
+using System.IO.Abstractions.TestingHelpers;
 using Xunit;
 
 namespace MarkdownCodeEmbed.Test.Container
@@ -9,20 +10,43 @@ namespace MarkdownCodeEmbed.Test.Container
     public class CodeContainerTest : TestContainer
     {
         [Fact]
-        public void Replace_Code_Embed_Marks() => LucidTest
-            .DefineExpected(@"```csharp
-public void TestCodeEmbed() { }
-```")
-            .Arrange(_ =>
+        public void Embed_Code_In_Markdown_File() => LucidTest
+            .DefineExpected(() =>
             {
+                const string ContentFormatter = @"# Header
+{0}
+
+More content";
+                const string CodeFileName = "code.cs";
+                const string CodeFileContent = "public void MethodName() { }";
+                return new
+                {
+                    CodeFileName = CodeFileName,
+                    CodeFileContent = CodeFileContent,
+                    InputContent = string.Format(ContentFormatter, $"[embed-code]: # ({CodeFileName})"),
+                    OutputContent = string.Format(ContentFormatter, $@"```csharp
+{CodeFileContent}
+```")
+                };
+            })
+            .Arrange(param =>
+            {
+                const string CodePath = @"C:\code";
+                FileSystem.AddFile(CombinePath(CodePath, param.CodeFileName), new MockFileData(param.CodeFileContent));
+
                 const string Name = "test.md";
                 var markdownFile = new MarkdownFile(Name, CombinePath(@"C:\test", Name), Name)
                 {
-                    Content = "[embed-code]: # (code.cs)"
+                    Content = param.InputContent
                 };
-                return markdownFile;
+
+                return new
+                {
+                    MarkdownFile = markdownFile,
+                    CodePath = CodePath
+                };
             })
-            .Act(file => new CodeContainer().EmbedCode(file))
-            .Assert((expectedCode, file) => file.Content.ShouldBe(expectedCode));
+            .Act(param => new CodeContainer(FileSystem, param.CodePath).EmbedCode(param.MarkdownFile))
+            .Assert((expectedValues, file) => file.Content.ShouldBe(expectedValues.OutputContent));
     }
 }

@@ -31,8 +31,9 @@ namespace MarkdownCodeEmbed
 
             foreach (var markdownFile in inputContainer.GetMarkdownFiles())
             {
-                _logger.Log(">>> Content of: " + markdownFile);
-                _logger.Log(markdownFile.Content);
+                _logger.Log("Processing: " + markdownFile.RelativePath);
+                var updatedFile = codeContainer.EmbedCode(markdownFile);
+                _logger.Log("Updated content: " + updatedFile.Content);
             }
         }
     }
