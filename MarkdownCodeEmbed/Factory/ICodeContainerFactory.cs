@@ -4,6 +4,6 @@ namespace MarkdownCodeEmbed.Factory
 {
     internal interface ICodeContainerFactory
     {
-        CodeContainer GetCodeContainer(string codeDirectory);
+        ICodeContainer GetCodeContainer(string codeDirectory);
     }
 }

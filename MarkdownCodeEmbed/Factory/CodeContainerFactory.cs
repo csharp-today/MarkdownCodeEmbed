@@ -10,7 +10,7 @@ namespace MarkdownCodeEmbed.Factory
 
         public CodeContainerFactory(IFileSystem fileSystem) => _fileSystem = fileSystem;
 
-        public CodeContainer GetCodeContainer(string codeDirectory)
+        public ICodeContainer GetCodeContainer(string codeDirectory)
         {
             if (!_fileSystem.Directory.Exists(codeDirectory))
             {

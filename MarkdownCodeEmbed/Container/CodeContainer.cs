@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace MarkdownCodeEmbed.Container
 {
-    internal class CodeContainer
+    internal class CodeContainer : ICodeContainer
     {
         private static readonly Regex EmbedCodeDirectiveRegex = new Regex(@"\[ *embed-code *\] *: *# *\((.*)\)", RegexOptions.IgnoreCase);
 

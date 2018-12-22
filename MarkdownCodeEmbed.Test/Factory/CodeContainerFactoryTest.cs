@@ -23,6 +23,6 @@ namespace MarkdownCodeEmbed.Test.Factory
             .Act(GetContainer)
             .Assert(container => container.ShouldNotBeNull());
 
-        private CodeContainer GetContainer(string dir) => Kernel.Get<CodeContainerFactory>().GetCodeContainer(dir);
+        private ICodeContainer GetContainer(string dir) => Kernel.Get<CodeContainerFactory>().GetCodeContainer(dir);
     }
 }
