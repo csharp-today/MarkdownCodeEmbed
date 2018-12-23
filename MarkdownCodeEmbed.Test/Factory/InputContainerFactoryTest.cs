@@ -3,7 +3,6 @@ using MarkdownCodeEmbed.Container;
 using MarkdownCodeEmbed.Factory;
 using Ninject;
 using Shouldly;
-using System;
 using Xunit;
 
 namespace MarkdownCodeEmbed.Test.Factory
@@ -24,6 +23,6 @@ namespace MarkdownCodeEmbed.Test.Factory
             .Act(GetContainer)
             .Assert(container => container.ShouldNotBeNull());
 
-        private InputContainer GetContainer(string dir) => Kernel.Get<InputContainerFactory>().GetInputContainer(dir);
+        private IInputContainer GetContainer(string dir) => Kernel.Get<InputContainerFactory>().GetInputContainer(dir);
     }
 }

@@ -10,7 +10,7 @@ namespace MarkdownCodeEmbed.Factory
 
         public InputContainerFactory(IFileSystem fileSystem) => _fileSystem = fileSystem;
 
-        public InputContainer GetInputContainer(string inputDirectory)
+        public IInputContainer GetInputContainer(string inputDirectory)
         {
             if (!_fileSystem.Directory.Exists(inputDirectory))
             {

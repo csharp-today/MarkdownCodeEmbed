@@ -3,11 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
-using System.Linq;
 
 namespace MarkdownCodeEmbed.Container
 {
-    internal class InputContainer
+    internal class InputContainer : IInputContainer
     {
         private readonly IFileSystem _fileSystem;
         private readonly string _rootPath;
