@@ -3,7 +3,7 @@ using System.IO.Abstractions;
 
 namespace MarkdownCodeEmbed.Container
 {
-    internal class OutputContainer
+    internal class OutputContainer : IOutputContainer
     {
         private readonly IFileSystem _fileSystem;
         private readonly string _outputDirectory;

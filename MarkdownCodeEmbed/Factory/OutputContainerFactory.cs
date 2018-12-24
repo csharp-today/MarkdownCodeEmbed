@@ -11,7 +11,7 @@ namespace MarkdownCodeEmbed.Factory
 
         public OutputContainerFactory(IFileSystem fileSystem) => _fileSystem = fileSystem;
 
-        public OutputContainer GetOutputContainer(string outputDirectory)
+        public IOutputContainer GetOutputContainer(string outputDirectory)
         {
             if (_fileSystem.Directory.Exists(outputDirectory))
             {
