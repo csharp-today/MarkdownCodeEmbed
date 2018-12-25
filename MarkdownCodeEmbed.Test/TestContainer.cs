@@ -1,4 +1,4 @@
-﻿using Ninject.MockingKernel;
+﻿using Ninject.MockingKernel.NSubstitute;
 using System;
 using System.IO.Abstractions;
 using System.IO.Abstractions.TestingHelpers;
@@ -8,7 +8,7 @@ namespace MarkdownCodeEmbed.Test
     public class TestContainer : IDisposable
     {
         protected readonly MockFileSystem FileSystem = new MockFileSystem();
-        protected readonly MockingKernel Kernel = new MockingKernel();
+        protected readonly NSubstituteMockingKernel Kernel = new NSubstituteMockingKernel();
 
         public TestContainer() => Kernel.Bind<IFileSystem>().ToConstant(FileSystem);
 

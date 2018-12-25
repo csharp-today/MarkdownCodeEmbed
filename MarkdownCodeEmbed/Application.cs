@@ -26,14 +26,14 @@ namespace MarkdownCodeEmbed
             _logger.Log("Working directory: " + _fileSystem.Path.GetFullPath("."));
 
             var inputContainer = _inputContainerFactory.GetInputContainer(args.InputDirectory);
-            var codeContainer = _codeContainerFactory.GetCodeContainer(args.SourceCodeDirectory);
-            var outputContainer = _outputContainerFactory.GetOutputContainer(args.OutputDirectory);
+            //var codeContainer = _codeContainerFactory.GetCodeContainer(args.SourceCodeDirectory);
+            //var outputContainer = _outputContainerFactory.GetOutputContainer(args.OutputDirectory);
 
             foreach (var markdownFile in inputContainer.GetMarkdownFiles())
             {
                 _logger.Log("Processing: " + markdownFile.RelativePath);
-                var updatedFile = codeContainer.EmbedCode(markdownFile);
-                _logger.Log("Updated content: " + updatedFile.Content);
+                //var updatedFile = codeContainer.EmbedCode(markdownFile);
+                //_logger.Log("Updated content: " + updatedFile.Content);
             }
         }
     }
