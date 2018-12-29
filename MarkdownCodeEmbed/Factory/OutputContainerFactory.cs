@@ -1,5 +1,5 @@
 ﻿using MarkdownCodeEmbed.Container;
-using System;
+using MarkdownCodeEmbed.Logger;
 using System.IO.Abstractions;
 using System.Linq;
 
@@ -8,8 +8,13 @@ namespace MarkdownCodeEmbed.Factory
     internal class OutputContainerFactory : IOutputContainerFactory
     {
         private readonly IFileSystem _fileSystem;
+        private readonly ILogger _logger;
 
-        public OutputContainerFactory(IFileSystem fileSystem) => _fileSystem = fileSystem;
+        public OutputContainerFactory(IFileSystem fileSystem, ILogger logger)
+        {
+            _fileSystem = fileSystem;
+            _logger = logger;
+        }
 
         public IOutputContainer GetOutputContainer(string outputDirectory)
         {
@@ -17,7 +22,7 @@ namespace MarkdownCodeEmbed.Factory
             {
                 if (_fileSystem.Directory.GetFiles(outputDirectory).Any())
                 {
-                    throw new ArgumentException("Output directory is not empty: " + outputDirectory);
+                    _logger.Log("Warning: The output directory is not empty, some files might be overridden.");
                 }
             }
             else

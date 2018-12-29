@@ -1,7 +1,9 @@
 ﻿using LucidCode;
 using MarkdownCodeEmbed.Container;
 using MarkdownCodeEmbed.Factory;
+using MarkdownCodeEmbed.Logger;
 using Ninject;
+using NSubstitute;
 using Shouldly;
 using System.IO.Abstractions.TestingHelpers;
 using Xunit;
@@ -24,7 +26,13 @@ namespace MarkdownCodeEmbed.Test.Factory
             });
 
         [Fact]
-        public void Fail_When_Output_Directory_Is_Not_Empty() => LucidTest
+        public void Get_Container_When_Have_Empty_Output_Directory() => LucidTest
+            .Arrange(ArrangeExistingDirectory)
+            .Act(GetContainer)
+            .Assert(container => container.ShouldNotBeNull());
+
+        [Fact]
+        public void Print_Warning_When_Output_Directory_Is_Not_Empty() => LucidTest
             .Arrange(() =>
             {
                 const string Directory = "not-empty-directory";
@@ -33,14 +41,12 @@ namespace MarkdownCodeEmbed.Test.Factory
                     new MockFileData("content"));
                 return Directory;
             })
-            .Act(dir => GetException(() => GetContainer(dir)))
-            .Assert(exception => exception.ShouldNotBeNull());
-
-        [Fact]
-        public void Get_Container_When_Have_Empty_Output_Directory() => LucidTest
-            .Arrange(ArrangeExistingDirectory)
             .Act(GetContainer)
-            .Assert(container => container.ShouldNotBeNull());
+            .Assert(container =>
+            {
+                container.ShouldNotBeNull();
+                Kernel.Get<ILogger>().Received().Log(Arg.Is<string>(message => message.ToLower().Contains("warning")));
+            });
 
         private IOutputContainer GetContainer(string dir) => Kernel.Get<OutputContainerFactory>().GetOutputContainer(dir);
     }
