@@ -30,7 +30,7 @@ namespace MarkdownCodeEmbed.Factory
                 _fileSystem.Directory.CreateDirectory(outputDirectory);
             }
 
-            return new OutputContainer(_fileSystem, outputDirectory);
+            return new OutputContainer(_fileSystem, _logger, outputDirectory);
         }
     }
 }
