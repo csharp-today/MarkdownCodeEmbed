@@ -10,6 +10,9 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>MarkdownCodeEmbed</ToolCommandName>
     <LangVersion>latest</LangVersion>
+
+    <RepositoryUrl>https://github.com/csharp-today/MarkdownCodeEmbed.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
