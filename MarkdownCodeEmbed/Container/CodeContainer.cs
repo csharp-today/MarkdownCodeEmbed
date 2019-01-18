@@ -1,4 +1,5 @@
-﻿using MarkdownCodeEmbed.Model;
+﻿using MarkdownCodeEmbed.Converter;
+using MarkdownCodeEmbed.Model;
 using System;
 using System.IO.Abstractions;
 using System.Text.RegularExpressions;
@@ -9,32 +10,24 @@ namespace MarkdownCodeEmbed.Container
     {
         private static readonly Regex EmbedCodeDirectiveRegex = new Regex(@"\[ *embed-code *\] *: *# *\((.*)\)", RegexOptions.IgnoreCase);
 
+        private readonly IFileToMarkdownConverter _converter;
         private readonly IFileSystem _fileSystem;
         private readonly string _codePath;
 
-        public CodeContainer(IFileSystem fileSystem, string codePath)
+        public CodeContainer(IFileToMarkdownConverter converter, IFileSystem fileSystem, string codePath)
         {
+            _converter = converter;
             _fileSystem = fileSystem;
             _codePath = codePath;
         }
 
         public MarkdownFile EmbedCode(MarkdownFile inputFile)
         {
-            var content = EmbedCodeDirectiveRegex.Replace(inputFile.Content, GetCode);
+            var content = EmbedCodeDirectiveRegex.Replace(inputFile.Content, GetMarkdown);
             return new MarkdownFile(inputFile.FileName, inputFile.RelativePath, inputFile.RelativePath)
             {
                 Content = content
             };
-        }
-
-        private string GetCode(Match embedCodeDirective)
-        {
-            var path = GetCodeFilePath(embedCodeDirective);
-            var content = _fileSystem.File.ReadAllText(path);
-
-            return $@"```csharp
-{content}
-```";
         }
 
         private string GetCodeFilePath(Match embedCodeDirective)
@@ -51,6 +44,14 @@ namespace MarkdownCodeEmbed.Container
             }
 
             throw new Exception("Can't find code file path: " + inputPath);
+        }
+
+        private string GetMarkdown(Match embedCodeDirective)
+        {
+            var path = GetCodeFilePath(embedCodeDirective);
+            var content = _fileSystem.File.ReadAllText(path);
+
+            return _converter.GetMarkdown(path, content);
         }
 
         private bool TryGetAbsoluteCodeFilePath(string absolutePath, out string path)
