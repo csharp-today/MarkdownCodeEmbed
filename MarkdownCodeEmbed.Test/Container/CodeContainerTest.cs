@@ -13,6 +13,29 @@ namespace MarkdownCodeEmbed.Test.Container
     public class CodeContainerTest : TestContainer
     {
         [Fact]
+        public void Call_Converter() => LucidTest
+            .DefineExpected(new
+            {
+                FileName = @"C:\Source.cs",
+                Content = "void"
+            })
+            .Arrange(values =>
+            {
+                FileSystem.AddFile(values.FileName, new MockFileData(values.Content));
+
+                const string FileName = "file.md";
+                var file = new MarkdownFile(FileName, CombinePath("C:", FileName), FileName);
+                file.Content = $"[embed-code]: # ({values.FileName})";
+                return file;
+            })
+            .Act(file => new CodeContainer(Kernel.Get<IFileToMarkdownConverter>(), FileSystem, @"C:\").EmbedCode(file))
+            .Assert((expectedValues, file) =>
+            {
+                file.ShouldNotBeNull();
+                Kernel.Get<IFileToMarkdownConverter>().Received().GetMarkdown(expectedValues.FileName, expectedValues.Content);
+            });
+
+        [Fact]
         public void Embed_Code_In_Markdown_File() => LucidTest
             .DefineExpected(() =>
             {
