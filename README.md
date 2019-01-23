@@ -2,7 +2,12 @@
 
 MarkdownCodeEmbed is a dotnet tool designed to embed source files into Markdown files.
 
-**Note**: Currently the tool embeds all code as C# files.
+## Supported file types
+
+| Markdown code block type | File types |
+|--------------------------|------------|
+| csharp | .cs|
+| (default) | (all other file types) |
 
 ## Tool installation
 
