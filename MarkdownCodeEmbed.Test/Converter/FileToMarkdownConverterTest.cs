@@ -47,6 +47,12 @@ namespace MarkdownCodeEmbed.Test.Converter
             .Act(code => GetMarkdown("other.xxx", code))
             .AssertCodeBlockIsRecognizedAs("");
 
+        [Fact]
+        public void Return_Xml_Markdown() => LucidTest
+            .Arrange(GetDefaultCodeBlock)
+            .Act(code => GetMarkdown("doc.xml", code))
+            .AssertCodeBlockIsRecognizedAs("xml");
+
         private string GetDefaultCodeBlock() => FileToMarkdownConverterTestExtensions.ExpectedCode;
 
         private string GetMarkdown(string fileName, string content) => Kernel.Get<FileToMarkdownConverter>().GetMarkdown(fileName, content);

@@ -22,6 +22,8 @@ namespace MarkdownCodeEmbed.Converter
             {
                 case ".cs":
                     return "csharp";
+                case ".xml":
+                    return "xml";
                 default:
                     return null;
             }
