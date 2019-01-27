@@ -1,5 +1,4 @@
 ﻿using LucidCode;
-using LucidCode.LucidTestFundations;
 using MarkdownCodeEmbed.Converter;
 using Ninject;
 using Shouldly;
@@ -9,52 +8,42 @@ using Xunit;
 
 namespace MarkdownCodeEmbed.Test.Converter
 {
-    public static class FileToMarkdownConverterTestExtensions
-    {
-        public const string ExpectedCode = "SOME_TEST_CODE";
-
-        public static void AssertCodeBlockIsRecognizedAs(this AssertManager<string> manager, string expectedBlockType)
-        {
-            var lines = manager.ActResult.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-            lines.Length.ShouldBe(3);
-
-            const string CodeBlockMarker = "```";
-            var firstLine = lines.First();
-            firstLine.StartsWith(CodeBlockMarker).ShouldBeTrue();
-
-            var blockType = firstLine.Replace(CodeBlockMarker, "");
-            blockType.ShouldBe(expectedBlockType);
-
-            var secondLine = lines.Skip(1).First();
-            secondLine.ShouldBe(ExpectedCode);
-
-            var lastLine = lines.Last();
-            lastLine.ShouldBe(CodeBlockMarker);
-        }
-    }
-
     public class FileToMarkdownConverterTest : TestContainer
     {
-        [Fact]
-        public void Return_CSharp_Markdown() => LucidTest
-            .Arrange(GetDefaultCodeBlock)
-            .Act(code => GetMarkdown("file.cs", code))
-            .AssertCodeBlockIsRecognizedAs("csharp");
+        private const string ExpectedCode = "SOME_TEST_CODE";
 
         [Fact]
-        public void Return_Unknown_Markdown() => LucidTest
-            .Arrange(GetDefaultCodeBlock)
-            .Act(code => GetMarkdown("other.xxx", code))
-            .AssertCodeBlockIsRecognizedAs("");
+        public void Return_CSharp_Markdown() => TestFileExtension("csharp", "cs");
 
         [Fact]
-        public void Return_Xml_Markdown() => LucidTest
-            .Arrange(GetDefaultCodeBlock)
-            .Act(code => GetMarkdown("doc.xml", code))
-            .AssertCodeBlockIsRecognizedAs("xml");
+        public void Return_Unknown_Markdown() => TestFileExtension("", "xxx");
 
-        private string GetDefaultCodeBlock() => FileToMarkdownConverterTestExtensions.ExpectedCode;
+        [Fact]
+        public void Return_Xml_Markdown() => TestFileExtension("xml", "xml");
 
-        private string GetMarkdown(string fileName, string content) => Kernel.Get<FileToMarkdownConverter>().GetMarkdown(fileName, content);
+        [Fact]
+        public void Return_Xml_Markdown_For_CSProj_Files() => TestFileExtension("xml", "csproj");
+
+        private void TestFileExtension(string expectedCodeBlockType, string fileExtension) => LucidTest
+            .Arrange(() => ExpectedCode)
+            .Act(code => Kernel.Get<FileToMarkdownConverter>().GetMarkdown("file." + fileExtension, code))
+            .Assert(markdown =>
+            {
+                var lines = markdown.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                lines.Length.ShouldBe(3);
+
+                const string CodeBlockMarker = "```";
+                var firstLine = lines.First();
+                firstLine.StartsWith(CodeBlockMarker).ShouldBeTrue();
+
+                var blockType = firstLine.Replace(CodeBlockMarker, "");
+                blockType.ShouldBe(expectedCodeBlockType);
+
+                var secondLine = lines.Skip(1).First();
+                secondLine.ShouldBe(ExpectedCode);
+
+                var lastLine = lines.Last();
+                lastLine.ShouldBe(CodeBlockMarker);
+            });
     }
 }
