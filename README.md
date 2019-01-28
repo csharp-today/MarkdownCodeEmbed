@@ -2,14 +2,6 @@
 
 MarkdownCodeEmbed is a dotnet tool designed to embed source files into Markdown files.
 
-## Supported file types
-
-| Markdown code block type | File types |
-|--------------------------|------------|
-| csharp | cs |
-| xml | csproj, xml |
-| (default) | (all other file types) |
-
 ## Tool installation
 
 The easiest way to install the tool is to use the `dotnet` tool.
@@ -31,6 +23,15 @@ To embed code from a source file add following line in the Markdown file:
 The following source MarkdownFile from LucidCode library: [source file](https://github.com/csharp-today/LucidCode/blob/master/DocForCodeEmbed/In.md) ([raw file](https://raw.githubusercontent.com/csharp-today/LucidCode/master/DocForCodeEmbed/In.md))
 
 Is transformed to: [file with embeded code](https://github.com/csharp-today/LucidCode/blob/master/In.md) ([raw file](https://raw.githubusercontent.com/csharp-today/LucidCode/master/In.md))
+
+## Supported file types
+
+| Markdown code block type | File types |
+|--------------------------|------------|
+| csharp | cs |
+| html | htm, html |
+| xml | csproj, xml |
+| (default) | (all other file types) |
 
 ## Execute the tool
 

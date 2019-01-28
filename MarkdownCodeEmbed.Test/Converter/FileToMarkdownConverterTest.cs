@@ -15,6 +15,10 @@ namespace MarkdownCodeEmbed.Test.Converter
         [Fact]
         public void Return_CSharp_Markdown() => TestFileExtension("csharp", "cs");
 
+        [Theory]
+        [InlineData("html"), InlineData("htm")]
+        public void Return_Html_Markdown(string fileExtension) => TestFileExtension("html", fileExtension);
+
         [Fact]
         public void Return_Unknown_Markdown() => TestFileExtension("", "xxx");
 
