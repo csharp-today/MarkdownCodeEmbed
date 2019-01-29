@@ -29,6 +29,7 @@ Is transformed to: [file with embeded code](https://github.com/csharp-today/Luci
 | Markdown code block type | File types |
 |--------------------------|------------|
 | csharp | cs |
+| css | css |
 | html | htm, html |
 | xml | csproj, xml |
 | (default) | (all other file types) |
