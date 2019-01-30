@@ -23,6 +23,9 @@ namespace MarkdownCodeEmbed.Test.Converter
         public void Return_Html_Markdown(string fileExtension) => TestFileExtension("html", fileExtension);
 
         [Fact]
+        public void Return_JavaScript_Markdown() => TestFileExtension("javascript", "js");
+
+        [Fact]
         public void Return_Unknown_Markdown() => TestFileExtension("", "xxx");
 
         [Fact]

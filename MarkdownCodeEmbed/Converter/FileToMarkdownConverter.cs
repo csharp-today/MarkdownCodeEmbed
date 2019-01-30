@@ -30,6 +30,8 @@ namespace MarkdownCodeEmbed.Converter
                 case ".htm":
                 case ".html":
                     return "html";
+                case ".js":
+                    return "javascript";
                 default:
                     return null;
             }
