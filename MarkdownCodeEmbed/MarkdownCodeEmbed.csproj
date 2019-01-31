@@ -13,6 +13,12 @@
 
     <RepositoryUrl>https://github.com/csharp-today/MarkdownCodeEmbed.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company>Mariusz Bojkowski</Company>
+    <Authors>Mariusz Bojkowski</Authors>
+    <Description>MarkdownCodeEmbed is a dotnet tool designed to embed source files into Markdown files.
+Full documentation is available here: https://github.com/csharp-today/MarkdownCodeEmbed</Description>
   </PropertyGroup>
 
   <ItemGroup>
