@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LucidCode" Version="0.3.3" />
+    <PackageReference Include="LucidCode" Version="0.3.5" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="Ninject.MockingKernel.NSubstitute" Version="3.3.0" />
     <PackageReference Include="Shouldly" Version="3.0.2" />
