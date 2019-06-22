@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="LucidCode" Version="0.3.6" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="Ninject.MockingKernel.NSubstitute" Version="3.3.0" />
     <PackageReference Include="Shouldly" Version="3.0.2" />
     <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="6.0.7" />
