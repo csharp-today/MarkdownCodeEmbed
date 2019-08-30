@@ -1,0 +1,33 @@
+Configuration:
+- Debug
+- Release
+Continue: 
+Help: 
+Host:
+- AppVeyor
+- Bitrise
+- Console
+- GitLab
+- Jenkins
+- TeamCity
+- TeamServices
+- Travis
+NoLogo: 
+Plan: 
+Root: 
+Skip:
+- Clean
+- Compile
+- Restore
+- Test
+Solution: 
+Target:
+- Clean
+- Compile
+- Restore
+- Test
+Verbosity:
+- Minimal
+- Normal
+- Quiet
+- Verbose

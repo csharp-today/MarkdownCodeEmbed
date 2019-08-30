@@ -7,12 +7,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkdownCodeEmbed", "Markdo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkdownCodeEmbed.Test", "MarkdownCodeEmbed.Test\MarkdownCodeEmbed.Test.csproj", "{A017849B-0683-412E-B00C-9D62E104ACA1}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "..\build\_build.csproj", "{815955C7-3BAE-41EF-BB86-580AC02CFF44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{815955C7-3BAE-41EF-BB86-580AC02CFF44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{815955C7-3BAE-41EF-BB86-580AC02CFF44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E186380A-7726-413C-A0AC-F3E1DCC12D0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E186380A-7726-413C-A0AC-F3E1DCC12D0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E186380A-7726-413C-A0AC-F3E1DCC12D0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
