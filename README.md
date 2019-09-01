@@ -2,7 +2,7 @@
 
 MarkdownCodeEmbed is a dotnet tool designed to embed source files into Markdown files.
 
-[![Build Status](https://dev.azure.com/mariuszbojkowski/Open%20Source%20projects/_apis/build/status/csharp-today.MarkdownCodeEmbed?branchName=master)](https://dev.azure.com/mariuszbojkowski/Open%20Source%20projects/_build/latest?definitionId=7&branchName=master)
+[![Build Status](https://dev.azure.com/mariuszbojkowski/Open%20Source%20projects/_apis/build/status/csharp-today.MarkdownCodeEmbed?branchName=master)](https://dev.azure.com/mariuszbojkowski/Open%20Source%20projects/_build/latest?definitionId=7&branchName=master) [![NuGet Version](https://img.shields.io/nuget/v/MarkdownCodeEmbed)](https://www.nuget.org/packages/MarkdownCodeEmbed/) [![NuGet Downloads](https://img.shields.io/nuget/dt/MarkdownCodeEmbed)](https://www.nuget.org/packages/MarkdownCodeEmbed/)
 
 ## Tool installation
 
