@@ -23,7 +23,7 @@ Full documentation is available here: https://github.com/csharp-today/MarkdownCo
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.6.0" />
-    <PackageReference Include="System.IO.Abstractions" Version="6.0.32" />
+    <PackageReference Include="System.IO.Abstractions" Version="6.0.38" />
     <PackageReference Include="Unity" Version="5.11.1" />
   </ItemGroup>
 
