@@ -22,9 +22,9 @@ To embed code from a source file add following line in the Markdown file:
 
 **Example**
 
-The following source MarkdownFile from LucidCode library: [source file](https://github.com/csharp-today/LucidCode/blob/master/DocForCodeEmbed/In.md) ([raw file](https://raw.githubusercontent.com/csharp-today/LucidCode/master/DocForCodeEmbed/In.md))
+The following source MarkdownFile from LucidCode library: [source file](https://raw.githubusercontent.com/csharp-today/LucidCode/master/Docs/RawDocumentationSource/Docs/Extensions/In.md)
 
-Is transformed to: [file with embeded code](https://github.com/csharp-today/LucidCode/blob/master/In.md) ([raw file](https://raw.githubusercontent.com/csharp-today/LucidCode/master/In.md))
+Is transformed to: [file with embeded code](https://raw.githubusercontent.com/csharp-today/LucidCode/master/Docs/Extensions/In.md)
 
 ## Supported file types
 
@@ -56,4 +56,4 @@ dotnet tool install -g MarkdownCodeEmbed || dotnet tool update -g MarkdownCodeEm
 MarkdownCodeEmbed --input MARKDOWN_INPUT_DIR --code SOURCE_CODE_DIR --output MARKDOWN_OUTPUT_DIR
 ```
 
-**Example**: Examples project of the LucidCode library: [Examples.csproj](https://github.com/csharp-today/LucidCode/blob/master/Examples/Examples.csproj) ([raw file](https://raw.githubusercontent.com/csharp-today/LucidCode/master/Examples/Examples.csproj))
+**Example**: Examples project of the LucidCode library: [Examples.csproj](https://github.com/csharp-today/LucidCode/blob/master/Examples/Examples.csproj)
